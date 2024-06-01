@@ -1,0 +1,28 @@
+.alert {
+    position: relative;
+    padding: 1rem 1rem 1rem 4rem;
+    border-radius: 0.25rem;
+  }
+  
+  .alert-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make it round */
+    border: 2px solid #28a745; /* Add a border */
+  }
+  
+  .alert-content {
+    margin-left: 80px; /* Adjust as needed */
+  }
+  
+  .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+  }
+  

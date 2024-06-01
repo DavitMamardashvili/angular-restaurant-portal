@@ -9,8 +9,10 @@ export class FirestoreService {
 
   constructor(private firestore:AngularFirestore) { }
 
-  create(path:string, data:any):Promise<void>{
-    let id = this.firestore.createId();
+  create(path:string, data:any , id:any = undefined):Promise<void>{
+    if(id == undefined)
+     id = this.firestore.createId();
+
     return this.firestore.collection(path).doc(id).set(data);
   }
 
@@ -24,5 +26,9 @@ export class FirestoreService {
 
   delete(path:string, id:string):Promise<void>{
     return this.firestore.collection(path).doc(id).delete();
+  }
+
+  readById(path: string,id:string): Observable<any> {
+    return this.firestore.collection(path).doc(id).valueChanges();
   }
 }

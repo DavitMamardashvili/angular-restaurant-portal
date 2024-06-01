@@ -1,0 +1,70 @@
+<article class="from-ontainer">
+    <div class="text-center justify-content-between">
+        <h2>Register</h2>
+        <hr class="custom-hr col-8">
+    </div>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+        <div class="full-name d-flex justify-content-between mb-2">
+            <div class="col-5 ">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter Your First Name" ngModel name="firstName"
+                    required pattern="[a-zA-Z]+">
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'firstName') == 1 ? 'First name is required !!!' : ''"></app-error-message>
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'firstName') == 3 ? 'First name can only contain letters !!!' : ''"></app-error-message>
+            </div>
+
+            <div class="col-5">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter Your last Name" ngModel name="lastName"
+                    required pattern="[a-zA-Z]+">
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'lastName') == 1 ? 'Last name is required !!!' : ''"></app-error-message>
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'lastName') == 3 ? 'Last name can only contain letters !!!' : ''"></app-error-message>
+            </div>
+        </div>
+
+        <div class="col-12 m-auto mb-4">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" placeholder="Enter Your Email" ngModel name="email" required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+            <app-error-message
+                [errorMessage]="validator.checkBaseValue(form,'email') == 1 ? 'Email is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkBaseValue(form,'email') == 3 ? 'Invalid email format !!!' : ''"></app-error-message>
+        </div>
+        <div class="col-12 m-auto mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Enter Your Password" ngModel name="password"
+                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{8,}$">
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 1 ? 'Password is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 2 ? 'Password must have at least 8 symbols!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 3 ? 'Password must contain at least one uppercase letter, one lowercase letter, and one digit.' : ''"></app-error-message>
+        </div>
+
+        <div class="col-12 m-auto mb-5">
+            <label for="confirmPassword" class="form-label">Confirm Your Password</label>
+            <input type="password" class="form-control" placeholder="Confirm Your Password" ngModel
+                name="confirmPassword" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{8,}$">
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmPassword') == 1 ? 'Password is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmPassword') == 2 ? 'Password must have at least 8 symbols!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmPassword') == 3 ? 'Password must contain at least one uppercase letter, one lowercase letter, and one digit.' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmPassword' , 'password') == 4 ? 'Passwords do not match' : ''"></app-error-message>
+        </div>
+        <div class="col-12 m-auto register-button">
+            <button class="btn btn-dark col-12" type="submit">Register</button>
+        </div>
+        <p>Already have an account? <a routerLink="/auth">Sign In</a></p>
+    </form>
+    <div appDynamicHost></div>
+</article>
+

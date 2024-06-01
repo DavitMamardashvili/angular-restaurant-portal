@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { FirestoreService } from './core/firebase/firestore.service';
+import { FirestoreService } from './core/services/firebase/firestore.service';
 
 @Component({
   selector: 'app-root',
