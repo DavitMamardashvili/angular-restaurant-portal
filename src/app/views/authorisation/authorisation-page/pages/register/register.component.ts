@@ -26,13 +26,14 @@ export class RegisterComponent {
     if (!form.valid || form.value.password !== form.value.confirmPassword) {
       return;
     }
-
+ 
     const registerInfoObject: any = Object.fromEntries(Object.entries(new RegisterInfo(form.value)));
     const authInfo: EmailAndPassword = new EmailAndPassword(form.value);
 
     this.firebaseAuthService.registerWhithEmailAndPassword('/users', authInfo, registerInfoObject)
       .then(() => {
-        this.alertService.createSuccessAlert(this.dynamicHost, "You have been registered successfully. Please check your email for the verification link.")
+        this.alertService.createSuccessAlert(this.dynamicHost, "You have been registered successfully. Please check your email for the verification link.");
+        form.resetForm();
       }).catch(() => {
         this.alertService.createErrorAlert(this.dynamicHost, "There was a problem. It's possible that you are already registered with this email address.")
       })

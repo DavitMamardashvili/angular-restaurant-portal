@@ -1,1 +1,72 @@
-<p>update works!</p>
+<div appDynamicHost></div>
+<article class="from-container">
+    <div class="text-center justify-content-between">
+        <h2>Update</h2>
+        <hr class="custom-hr col-8">
+    </div>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+        <div class="full-name d-flex justify-content-between mb-2">
+            <div class="col-5 ">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter Your First Name" [(ngModel)]="userInfo.firstName" name="firstName"
+                    required pattern="[a-zA-Z]+">
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'firstName') == 1 ? 'First name is required !!!' : ''"></app-error-message>
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'firstName') == 3 ? 'First name can only contain letters !!!' : ''"></app-error-message>
+            </div>
+
+            <div class="col-5">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter Your last Name" [(ngModel)]="userInfo.lastName" name="lastName"
+                    required pattern="[a-zA-Z]+">
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'lastName') == 1 ? 'Last name is required !!!' : ''"></app-error-message>
+                <app-error-message
+                    [errorMessage]="validator.checkBaseValue(form,'lastName') == 3 ? 'Last name can only contain letters !!!' : ''"></app-error-message>
+            </div>
+        </div>
+        <div class="col-12 m-auto mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Enter Your Current Password" ngModel name="password"
+                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{8,}$">
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 1 ? 'Password is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 2 ? 'Password must have at least 8 symbols!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 3 ? 'Password must contain at least one uppercase letter, one lowercase letter, and one digit.' : ''"></app-error-message>
+        </div>
+        
+        <div class="col-12 m-auto mb-4">
+            <label for="password" class="form-label">new password</label>
+            <input type="password" class="form-control" placeholder="Enter Your New Password" ngModel name="newPassword"
+                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{8,}$">
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'newPassword') == 1 ? 'Password is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'newPassword') == 2 ? 'Password must have at least 8 symbols!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'newPassword') == 3 ? 'Password must contain at least one uppercase letter, one lowercase letter, and one digit.' : ''"></app-error-message>
+        </div>
+
+        <div class="col-12 m-auto mb-5">
+            <label for="confirmNewPassword" class="form-label">Confirm Your new Password</label>
+            <input type="password" class="form-control" placeholder="Confirm Your New Password" ngModel
+                name="confirmNewPassword" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{8,}$">
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmNewPassword') == 1 ? 'Password is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmNewPassword') == 2 ? 'Password must have at least 8 symbols!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmNewPassword') == 3 ? 'Password must contain at least one uppercase letter, one lowercase letter, and one digit.' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'confirmNewPassword' , 'newPassword') == 4 ? 'Passwords do not match' : ''"></app-error-message>
+        </div>
+        <div class="col-12 m-auto register-button">
+            <button class="btn btn-dark col-12" type="submit">Update</button>
+        </div>
+    </form>
+</article>
+
+

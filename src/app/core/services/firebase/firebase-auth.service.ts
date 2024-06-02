@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app'; // Import firebase directly from the package
+import 'firebase/compat/auth'; // Import specific Firebase services
 import { map } from 'rxjs';
 import { FirestoreService } from './firestore.service';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +40,19 @@ export class FirebaseAuthService {
 
   async signOut():Promise<any>{
     return this.fireAuth.signOut()
+  }
+
+  async updatePassword(currentPassword: string, newPassword: string): Promise<void> {
+    const user = await this.fireAuth.currentUser; 
+    if (user) {
+      const credential = firebase.auth.EmailAuthProvider.credential( 
+        user.email!,
+        currentPassword
+      );
+      await user.reauthenticateWithCredential(credential); 
+      await user.updatePassword(newPassword); 
+    } else {
+      throw new Error('User not authenticated.');
+    }
   }
 }

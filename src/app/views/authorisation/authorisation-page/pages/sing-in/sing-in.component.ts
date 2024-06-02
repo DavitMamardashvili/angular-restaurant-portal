@@ -32,6 +32,7 @@ export class SingInComponent {
         if (response?.user?.emailVerified) {
           this.userManager.setUid(response.user.uid);
           this.userManager.setUserInfo(response.user.additionalData);
+          
         }
         else if (!response?.user?.emailVerified) {
           this.alertService.createErrorAlert(this.dynamicHost, "Please check your email for the verification link.");
