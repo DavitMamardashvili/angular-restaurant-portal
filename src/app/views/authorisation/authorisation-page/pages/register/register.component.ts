@@ -4,7 +4,6 @@ import { FormValidationService } from '../../services/form-validation.service';
 import { RegisterInfo } from '../../models/RegisterInfo';
 import { EmailAndPassword } from '../../models/EmailAndPassword';
 import { FirebaseAuthService } from '../../../../../core/services/firebase/firebase-auth.service';
-import { FirestoreService } from '../../../../../core/services/firebase/firestore.service';
 import { DynamicHostDirective } from '../../../../../core/directives/dynamic-host.directive';
 import { AlertService } from '../../../../../core/services/dynamicComponent/alert.service';
 
@@ -18,7 +17,10 @@ export class RegisterComponent {
 
   constructor(public validator: FormValidationService,
     private firebaseAuthService: FirebaseAuthService,
-    private alertService: AlertService) { }
+    private alertService: AlertService) {
+
+
+     }
 
   onFormSubmit(form: NgForm) {
     if (!form.valid || form.value.password !== form.value.confirmPassword) {

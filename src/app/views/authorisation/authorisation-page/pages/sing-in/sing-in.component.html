@@ -1,1 +1,39 @@
-<p>sing-in works!</p>
+<div appDynamicHost></div>
+<article class="from-container">
+    <div class="text-center justify-content-between">
+        <h2>Sing In</h2>
+        <hr class="custom-hr col-8">
+    </div>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+        <div class="col-12 m-auto mb-4">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" placeholder="Enter Your Email" ngModel name="email" required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+            <app-error-message
+                [errorMessage]="validator.checkBaseValue(form,'email') == 1 ? 'Email is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkBaseValue(form,'email') == 3 ? 'Invalid email format !!!' : ''"></app-error-message>
+        </div>
+        <div class="col-12 m-auto mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Enter Your Password" ngModel name="password"
+                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{8,}$">
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 1 ? 'Password is required !!!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 2 ? 'Password must have at least 8 symbols!' : ''"></app-error-message>
+            <app-error-message
+                [errorMessage]="validator.checkPasswordValue(form,'password') == 3 ? 'Password must contain at least one uppercase letter, one lowercase letter, and one digit.' : ''"></app-error-message>
+        </div>
+
+        <div class="col-12 m-auto register-button">
+            <button class="btn btn-dark col-12" type="submit">Sing In</button>
+        </div>
+
+        <div class="btn-area d-flex justify-content-between">
+            <p type="button"(click)="onResetPasswordBtnClick()" class="btn">Forgot Password?</p>
+            <p type="button" routerLink="/auth/register" class="btn">Register</p>
+        </div>
+    </form>
+</article>
+
