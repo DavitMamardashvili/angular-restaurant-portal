@@ -14,29 +14,30 @@ import Swal from 'sweetalert2'
 })
 export class SingInComponent {
   @ViewChild(DynamicHostDirective, { static: true }) dynamicHost!: DynamicHostDirective;
+  emailVerified:boolean = false
 
   constructor(private firebaseAuthService: FirebaseAuthService,
     public validator: FormValidationService,
-    private alertService: AlertService , 
-    private  userManager:UserManagerService) { 
+    private alertService: AlertService,
+    private userManager: UserManagerService) {
 
-    }
+  }
 
 
   onFormSubmit(form: NgForm) {
-    if(!form.valid)
-     return;
+    if (!form.valid)
+      return;
 
     this.firebaseAuthService.signInWithEmailAndPassword(form.value.email, form.value.password).then(observResponse => {
       observResponse.subscribe((response: any) => {
         if (response?.user?.emailVerified) {
           this.userManager.setUid(response.user.uid);
           this.userManager.setUserInfo(response.user.additionalData);
-          
         }
         else if (!response?.user?.emailVerified) {
-          this.alertService.createErrorAlert(this.dynamicHost, "Please check your email for the verification link.");
-          this.firebaseAuthService.signOut().then();
+          if(!this.emailVerified)
+          this.firebaseAuthService.signOut().then(() => this.alertService.createErrorAlert(this.dynamicHost, "Please check your email for the verification link."));
+          this.emailVerified =true
         }
       });
     }).catch(() => {
