@@ -1,0 +1,11 @@
+<article class="col-6 m-auto d-flex">
+    <div class="col-4 d-flex justify-content-center flex-column"(click)="onFilterDataCliick(0 , 'USA')" [ngClass]="{'active': activeDiv[0]}">
+        <h4 class="text-center">U.S.A</h4>
+    </div>
+    <div class="col-4 d-flex justify-content-center flex-column country"(click)="onFilterDataCliick(1 , 'pitca')" [ngClass]="{'active': activeDiv[1]}">
+        <h4 class="text-center">Get All Pizza</h4>
+    </div>
+    <div class="col-4 d-flex justify-content-center flex-column"(click)="onFilterDataCliick(2 , 'Italy')" [ngClass]="{'active': activeDiv[2]}">
+        <h4 class="text-center">Italyan</h4>
+    </div>
+</article>

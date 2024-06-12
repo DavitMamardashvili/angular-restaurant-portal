@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { envoerment } from '../envoerment/envoerment';
 import { FormsModule } from '@angular/forms';
+import { ViewsModule } from './views/views.module';
 
 
 
@@ -18,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     AngularFireModule.initializeApp(envoerment.firebaseConfig),
     AngularFireModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

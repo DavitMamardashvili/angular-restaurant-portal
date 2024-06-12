@@ -1,0 +1,7 @@
+
+.card-img-top {
+    height: 300px; /* Adjust height as needed */
+    object-fit: cover; /* Ensures the image covers the entire space */
+    border-top-left-radius: calc(0.25rem - 1px); /* Adjust border radius to match Bootstrap card */
+    border-top-right-radius: calc(0.25rem - 1px); /* Adjust border radius to match Bootstrap card */
+  }

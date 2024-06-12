@@ -10,10 +10,5 @@ import { FirestoreService } from './core/firebase/firestore.service';
 export class AppComponent {
   title = 'restaurant-portal';
 
-  constructor(private f :FirestoreService){
 
-  }
-  X(form:NgForm){
-    this.f.create('example' , form.value)
-  }
 }
